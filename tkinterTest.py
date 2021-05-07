@@ -1,19 +1,35 @@
 from tkinter import *
 
 top = Tk()
-playlist =[]
+playList = []
 def results():
     result= E1.get()
-    playlist.append(result)
+    playList.append(result)
     E1.delete(0,END)
 
 def printList():
-    print(playlist)
+    print(playList)
 
 def exportList():
-    with open('test.txt', 'w') as f:
-    for item in playList:
-        f.write("%s/n" % item)
+    with open('playList.txt', 'w') as f:
+        for item in playList:
+            f.write("%s/n" % item)
+
+def clearWindow():
+    for children in top.winfo_children():
+        children.destroy()
+
+def mainMenu():
+    clearWindow()
+    LMain = Label(top, text = "Block 5 GUI Progects:")
+    LMain.grid(column = 0, row = 1)
+    B1Main = Button(text = "Week 1", bg= "white")
+    B1Main.grid(column=0, row=2)
+    B2Main = Button(text= "Week 2", bg="white")
+    B2Main.grid(column=0, row=2)
+    B3Main = Button(text="Week 3", bg="white"
+    B3Main.grid(column=0, row=4)
+    
 
 
 L1 = Label(top, text="Playlist Generator")
@@ -24,10 +40,19 @@ E1 = Entry(top, bd = 7)
 
 E1.grid(column = 0, row = 2)
 
-B1 = Button(text= " Ya like jazzzzz? ", bg="lightgreen", command= results)
+B1 = Button(text= " Ya like jazzzzz? ", bg = "lightgreen", command= results)
 B1.grid(column = 1, row = 2)
 
-B2 = Button(text=" Print Playlist ", bg="lightblue", command= printList)
-B2.grid(column = 2, row =2)
+B2 = Button(text=" = ", bg = "lightblue", command= printList)
+B2.grid(column = 2, row = 2)
+
+B3 = Button(text = "Export List", bg = "green", command = exportList)
+B3.grid(column = 0, row = 3)
+
+
+Bexit = Button (text = "Clear Window", bg = "red", command = clearWindow)
+Bexit.grid(column = 3, row = 2)
+
+
 
 top.mainloop()
